@@ -9,7 +9,7 @@ AjaxCreate allows you to bring up a modal dialoge that asks simply for the name 
 
 N.B. Users will still want to complete the data for whatever record type they create (e.g., add collectors to a Collection, make it public, etc.).
 
-Usage:
+
 The following helper function returns a link to open the dialog:
 
 function ajax_create_dialog(array $options, $callback = "AC.appendToSelect" , $label = false)
@@ -38,6 +38,4 @@ The data returned from the server is a JSON blob in this form:
 
 status and message are handled in a method before passing the data on to your callback, but you can always change the default behavior by overriding
 AC.processResponse in your own javascript.
-
-
 

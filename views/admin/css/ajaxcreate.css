@@ -1,0 +1,71 @@
+.ajax-create-open-dialog {
+   cursor: pointer;
+}
+
+
+div#dialog label {
+   width: 100px;
+   
+}
+
+.ui-draggable .ui-dialog-titlebar {
+   cursor:move;
+   font-family:Georgia,Times,"Times New Roman",serif;
+}
+
+
+
+.ui-corner-all {
+-moz-border-radius-bottomleft:4px;
+-moz-border-radius-bottomright:4px;
+-moz-border-radius-topleft:4px;
+-moz-border-radius-topright:4px;
+}
+
+div#dialog {
+   width: 400px;
+}
+
+.ui-dialog {
+   border: 2px solid black;
+   background-color: white;
+   padding: 3px;
+   opacity: 100%;
+   width: 400px;
+
+}
+
+.ui-dialog-titlebar {
+   background-color: #EAE9DB;
+   color:#A74C29;
+   padding:0.5em 0.3em;
+   position:relative;
+   font-size:2.4em;
+   font-weight:normal;
+   line-height:1.5em;
+   margin-bottom:1em;
+   border-bottom: 2px solid #CCCCCC;
+
+}
+
+.ui-dialog-title {
+   width: 100%;
+}
+
+.ui-dialog-content {
+   background-color: white;
+
+}
+
+.ui-helper-clearfix {
+
+}
+.ui-dialog-titlebar-close {
+
+   float:right;
+   font-size:10pt;
+   line-height:1em;
+   padding:2px;
+
+}
+
