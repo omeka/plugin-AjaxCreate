@@ -3,6 +3,7 @@ var AC = {
 	openDialog: function(data) {
 		jQuery('#ajax-create-dialog-name').val('');
 		jQuery('#ajax-create-dialog-description').val('');
+		jQuery('.ajax-create-dialog-type-name').text(data.type);
 		var setup = {
 			modal: true,
 			buttons: {"Add" : function() {

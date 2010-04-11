@@ -15,6 +15,12 @@ class AjaxCreate_CreateController extends Omeka_Controller_Action
 		$name = $_POST['name'];
 		$desc = $_POST['description'];
 
+//redirect to special handling based on $type
+		if(method_exists("AjaxCreate_CreateController", "_" . $type)) {
+			$method = "_" . $type;
+			$this->$method();
+			exit;
+		}
 
 		if(class_exists($type)) {
 			try {
@@ -32,8 +38,6 @@ class AjaxCreate_CreateController extends Omeka_Controller_Action
 			exit;							
 		}
 		
-
-		
 		
 		$record->name = $name;
 		$record->description = $desc;
@@ -42,7 +46,7 @@ class AjaxCreate_CreateController extends Omeka_Controller_Action
 			$record->save();
 		} catch (Exception $e) {
 			$returnObj->status = "Error";
-			$returnObj->message = $e->message;
+			$returnObj->message = "Could not save $type! Maybe check the error logs?";
 			echo json_encode($returnObj);
 			exit;	
 		}
@@ -60,7 +64,17 @@ class AjaxCreate_CreateController extends Omeka_Controller_Action
 		echo json_encode($returnObj);
 	}
     
-
+	private function _Element()
+	{
+		$this->_helper->viewRenderer->setNoRender();
+		$returnObj = new StdClass();
+		$returnObj->callback = $_POST['callback'];
+		$returnObj->target = $_POST['target'];
+		$returnObj->status = "Error";
+		$returnObj->message = "Elements cannot yet be created via this plugin.";		
+		echo json_encode($returnObj);
+		
+	}
 	
 	
 	

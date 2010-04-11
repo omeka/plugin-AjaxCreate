@@ -39,10 +39,6 @@ var AC = {
 		jQuery('#dialog').dialog('close');
 	},
 
-	cb: function(data) {
-		alert(data.id);
-	},
-
 	appendToSelect: function(data) {
 		var sel = jQuery('#' + data.target);
 		var newOption = document.createElement('option');
