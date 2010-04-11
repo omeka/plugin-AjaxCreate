@@ -41,3 +41,38 @@ AC.processResponse in your own javascript.
 
 
 
+
+Examples:
+Basic example (adapted from FeedImporter form-tabs.php )
+<?php 
+	echo "<div class='feed-importer-field'><label>Collection for items in feed</label>" . select_collection(array('name'=>'collection_id', 'value'=>$feedimporter_feed->collection_id), $feedimporter_feed->collection_id);
+
+	//note that select_collection creates a <select> with @id="collection_id"
+	echo ajax_create_dialog(array('type'=>'Collection', 'target'=>'collection_id'));
+?>
+
+
+
+Using a custom callback
+
+<script type="text/javascript">
+function myCallback(data) {	
+	// lookup the existing element
+	var newCollectionDiv = document.getElementById('my-plugin-new-collection');
+
+	// build the heading
+	var newCollectionH = document.createElement('h3');
+	newCollectionH.appendChild(document.createTextNode(data.name));
+
+	// build the description
+	newCollectionDesc = document.createElement('p');
+	newCollectionDesc.appendChild(document.createTextNode('data.description'));
+
+	//append heading and description to the div
+	newCollectionDiv.appendChild(newCollectionH);
+	newCollectionDiv.appendChild(newCollectionDesc);
+}
+</script>
+
+<?php echo ajax_create_dialog(array('type'=>'Collection', 'target'=>'my-plugin-new-collection'), "myCallback"); ?>
+

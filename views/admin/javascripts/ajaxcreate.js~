@@ -1,7 +1,8 @@
 var AC = {
 
 	openDialog: function(data) {
-
+		jQuery('#ajax-create-dialog-name').val('');
+		jQuery('#ajax-create-dialog-description').val('');
 		var setup = {
 			modal: true,
 			buttons: {"Add" : function() {
@@ -28,11 +29,14 @@ var AC = {
 		if(typeof data ==  'string') {
 			data = eval('(' + data + ')' );
 		}
-		if(data.status == 'error') {
+		if(data.status == 'Error') {
 			alert(data.message);
+			jQuery('#dialog').dialog('close');			
+			return;
 		}
 		var cb = eval(data.callback);
 		cb(data);
+		jQuery('#dialog').dialog('close');
 	},
 
 	cb: function(data) {

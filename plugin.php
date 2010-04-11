@@ -24,7 +24,9 @@ function ajax_create_admin_theme_footer()
 		<label>Name</label><input id='ajax-create-dialog-name' type='text' size='20' />
 		<br/>
 		<label>Description</label><textarea id='ajax-create-dialog-description' rows='5' cols='25'></textarea>
-		</form>	
+		</form>
+		<p>Note: You will want to finish setting up the new <span class='ajax-create-dialog-type-name'>Record</span> after you are done here</p>		
+					
 	</div>";	
 }
 ?>

@@ -15,15 +15,24 @@ class AjaxCreate_CreateController extends Omeka_Controller_Action
 		$name = $_POST['name'];
 		$desc = $_POST['description'];
 
-		
-		try {
-			$record = new $type();	
-		} catch (Exception $e) {
 
-
+		if(class_exists($type)) {
+			try {
+				$record = new $type();	
+			} catch (Exception $e) {
+				$returnObj->status = "Error";
+				$returnObj->message = $e->message;
+				echo json_encode($returnObj);
+				exit;				
+			}			
+		} else {
+			$returnObj->status = "Error";
+			$returnObj->message = "That record type does not exist.";
 			echo json_encode($returnObj);
-			exit;				
+			exit;							
 		}
+		
+
 		
 		
 		$record->name = $name;
@@ -32,6 +41,7 @@ class AjaxCreate_CreateController extends Omeka_Controller_Action
 		try {
 			$record->save();
 		} catch (Exception $e) {
+			$returnObj->status = "Error";
 			$returnObj->message = $e->message;
 			echo json_encode($returnObj);
 			exit;	
