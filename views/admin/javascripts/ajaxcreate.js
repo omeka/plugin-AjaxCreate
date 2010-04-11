@@ -33,6 +33,7 @@ var AC = {
 		}
 		var cb = eval(data.callback);
 		cb(data);
+		jQuery('#dialog').dialog('close');
 	},
 
 	cb: function(data) {
@@ -40,8 +41,13 @@ var AC = {
 	},
 
 	appendToSelect: function(data) {
-//		var sel = jQuery('#' + data.target);
-		alert(data.target);
+		var sel = jQuery('#' + data.target);
+		var newOption = document.createElement('option');
+		jQuery(newOption).attr('label', data.name);
+		jQuery(newOption).attr('value', data.id);
+		jQuery(newOption).text(data.name);
+		jQuery(sel).append(newOption);
+		jQuery(sel).val(data.id);
 	}
 
 }
