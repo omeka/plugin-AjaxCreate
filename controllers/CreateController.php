@@ -11,11 +11,10 @@ class AjaxCreate_CreateController extends Omeka_Controller_Action
 		$this->_helper->viewRenderer->setNoRender();
 		$returnObj = new StdClass();
 		header('Content-type: application/javascript');
-		//$data = json_decode($jsonObj);
 		$type = $_POST['type'];
 		$name = $_POST['name'];
 		$desc = $_POST['description'];
-		//magic happens here
+
 		
 		try {
 			$record = new $type();	
@@ -33,14 +32,14 @@ class AjaxCreate_CreateController extends Omeka_Controller_Action
 		try {
 			$record->save();
 		} catch (Exception $e) {
-			
+			$returnObj->message = $e->message;
 			echo json_encode($returnObj);
 			exit;	
 		}
 		
 		
 		$returnObj->status = "OK";
-		$returnObj->message = "Hi there";
+		$returnObj->message = "";
 		
 		$returnObj->id = $record->id;
 		$returnObj->name = $record->name;
