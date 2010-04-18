@@ -12,17 +12,17 @@ N.B. Users will still want to complete the data for whatever record type they cr
 Usage:
 The following helper function returns a link to open the dialog:
 
-function ajax_create_dialog(array $options, $callback = "AC.appendToSelect" , $label = false)
+function ajax_create_dialog(array $options, $callback = "AC.prependToSelect" , $label = false)
 $options is an array in this form:
 array('type'=> '', // the record type. Required.
 	  'skipDescription' => false, // boolean whether to include the Description field in the dialog (Tags don't have descriptions)
-	  'target' => '',  // generally, the id of the select element to append the return data to	
+	  'target' => '',  // usually, a jQuery selector for the select element to prepend a new option to
+	  'label' => '', // optional label for the link to open the dialog. Defaults to "Create a new (type)".
 )
 
 $callback is a reference to a custom javascript function you provide.
 If your UI works differently, you can provide your own javascript callback in $callback. The 'target' option can then be used in whatever way you see fit.
 
-$label is an optional label for the link to open the dialog. Defaults to "Create a new $type".
 
 The data returned from the server is a JSON blob in this form:
 
@@ -30,7 +30,7 @@ The data returned from the server is a JSON blob in this form:
   type: '', // the new record type
   name: '', 
   description: '',
-  target: '', // the selectId (or other target info if using a custom callback) to use
+  target: '', // the jQuery selector (or other target info if using a custom callback) to use
   callback: '', // the callback to use, if not stuffing results into a select
   status: '', // "OK" or "Error"
   message: '', // the error message

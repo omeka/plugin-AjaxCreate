@@ -1,15 +1,21 @@
 var AC = {
 
 	openDialog: function(data) {
-		jQuery('#ajax-create-dialog-name').val('');
+	
+		jQuery('#ajax-create-dialog-name').val('');		
 		jQuery('#ajax-create-dialog-description').val('');
-		jQuery('.ajax-create-dialog-type-name').text(data.type);
+		if(data.skipDesc) {
+			jQuery('.ajax-create-dialog-description').hide();
+		} else {
+			jQuery('.ajax-create-dialog-description').show();
+		}
 		var setup = {
 			modal: true,
 			buttons: {"Add" : function() {
 				data.name = jQuery('#ajax-create-dialog-name').val();
-				data.description = jQuery('#ajax-create-dialog-description').val();
-				
+				if(!data.skipDesc) { 
+					data.description = jQuery('#ajax-create-dialog-description').val();
+				}
 				jQuery.post(
 					'http://localhost/workspace/omeka/ajax-create/create',
 					data,
@@ -18,11 +24,12 @@ var AC = {
 				} 
 			} , 
 			autoOpen: false,
-			title: "Create A New " + data.type,
+			title: "Create A New " + data.type,			
 			width: "400px"
 			};
-		jQuery('#dialog').dialog(setup);
-		jQuery('#dialog').dialog('open');
+		jQuery('#ajax-create-dialog').dialog(setup);
+		jQuery('#ajax-create-dialog').dialog('option', setup);
+		jQuery('#ajax-create-dialog').dialog('open');
 	
 	},
 
@@ -32,22 +39,21 @@ var AC = {
 		}
 		if(data.status == 'Error') {
 			alert(data.message);
-			jQuery('#dialog').dialog('close');			
+			jQuery('#ajax-create-dialog').dialog('close');			
 			return;
 		}
 		var cb = eval(data.callback);
 		cb(data);
-		jQuery('#dialog').dialog('close');
+		jQuery('#ajax-create-dialog').dialog('close');
 	},
 
-	appendToSelect: function(data) {
-		var sel = jQuery('#' + data.target);
+	prependToSelect: function(data) {
+		var sel = jQuery(data.target);
 		var newOption = document.createElement('option');
 		jQuery(newOption).attr('label', data.name);
 		jQuery(newOption).attr('value', data.id);
 		jQuery(newOption).text(data.name);
-		jQuery(sel).append(newOption);
-		jQuery(sel).val(data.id);
+		jQuery(sel).prepend(newOption);		
 	}
 
 }

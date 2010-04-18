@@ -22,7 +22,7 @@ div#dialog label {
 -moz-border-radius-topright:4px;
 }
 
-div#dialog {
+div#ajax-create-dialog {
    width: 400px;
 }
 
