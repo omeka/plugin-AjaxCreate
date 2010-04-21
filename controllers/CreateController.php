@@ -2,7 +2,7 @@
 
 
 
-
+require_once(BASE_DIR . '/application/helpers/UserFunctions.php');
 
 class AjaxCreate_CreateController extends Omeka_Controller_Action
 {

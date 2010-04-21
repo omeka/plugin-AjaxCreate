@@ -2,7 +2,7 @@
 
 
 
-function ajax_create_dialog($options, $callback = "AC.prependToSelect")
+function ajax_create_dialog($options, $callback = "AC.appendToSelect")
 {
 
 	if(! isset($options['type'])) {

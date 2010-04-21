@@ -47,13 +47,13 @@ var AC = {
 		jQuery('#ajax-create-dialog').dialog('close');
 	},
 
-	prependToSelect: function(data) {
+	appendToSelect: function(data) {
 		var sel = jQuery(data.target);
 		var newOption = document.createElement('option');
 		jQuery(newOption).attr('label', data.name);
 		jQuery(newOption).attr('value', data.id);
 		jQuery(newOption).text(data.name);
-		jQuery(sel).prepend(newOption);		
+		jQuery(sel).append(newOption);		
 	}
 
 }
