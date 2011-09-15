@@ -17,7 +17,7 @@ var AC = {
 					data.description = jQuery('#ajax-create-dialog-description').val();
 				}
 				jQuery.post(
-					AC.webRoot + '/ajax-create/create',
+					webRoot + '/ajax-create/create',
 					data,
 					function(data) {
 						console.log('ok');
