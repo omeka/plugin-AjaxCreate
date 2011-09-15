@@ -30,9 +30,7 @@ function ajax_create_dialog($options, $callback = "AC.appendToSelect")
 		$dataObj->callback = $callback;	
 		$dataObjStr = json_encode($dataObj);
 		
-		return "<p onclick='AC.openDialog($dataObjStr)' class='ajax-create-open-dialog add'>$label</p>";		
-		
-		
+		return "<p onclick='AC.openDialog($dataObjStr)' class='ajax-create-open-dialog add'>$label</p>";					
 		
 	}
 

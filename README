@@ -1,4 +1,5 @@
-AjaxCreate does nothing by itself. It provides a mechanism to quickly create new Omeka Records with ajax while in the middle of another workflow.
+AjaxCreate provides a mechanism to quickly create new Omeka Records with ajax while in the middle of another workflow.
+It includes an icon to create a new Collection from the Item edit page, but can be configured to work with other Record types.
 
 Use Case:
 The configuration of a plugin or data about a record depends on the existance of a record of a particular type. For example, when creating a new Item, there is a select list for the Collection it belongs to; or the settings for an importer let you choose a Collection or an Item Type etc.
@@ -40,18 +41,16 @@ status and message are handled in a method before passing the data on to your ca
 AC.processResponse in your own javascript.
 
 
-
-
 Examples:
-Basic example (adapted from FeedImporter form-tabs.php )
-<?php 
-	echo "<div class='feed-importer-field'><label>Collection for items in feed</label>" . select_collection(array('name'=>'collection_id', 'value'=>$feedimporter_feed->collection_id), $feedimporter_feed->collection_id);
-
-	//note that select_collection creates a <select> with @id="collection_id"
-	echo ajax_create_dialog(array('type'=>'Collection', 'target'=>'collection_id'));
+Basic example adapted from adding the "Add Collection" link to Item edit pages.
+<?php
+	$options = array(
+		'type'=> 'Collection',
+		'target' => '#collection-id'	
+	);
+	$dialog_content = ajax_create_dialog($options);
+	echo $dialog_content;	
 ?>
-
-
 
 Using a custom callback
 

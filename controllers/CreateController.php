@@ -1,7 +1,5 @@
 <?php
 
-
-
 require_once(BASE_DIR . '/application/helpers/UserFunctions.php');
 
 class AjaxCreate_CreateController extends Omeka_Controller_Action
@@ -44,10 +42,14 @@ class AjaxCreate_CreateController extends Omeka_Controller_Action
 				
 				$record->name = $name;
 				$record->description = $desc;
+				if($type == 'Collection') {
+					$record->collectors = ' ';
+				}
 				
 				try {
 					$record->save();
 				} catch (Exception $e) {
+					_log($e);
 					$this->returnObj->status = "Error";
 					$this->returnObj->message = "Could not save $type! Maybe check the error logs?";
 					echo json_encode($this->returnObj);

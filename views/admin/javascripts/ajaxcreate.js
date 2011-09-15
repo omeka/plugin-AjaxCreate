@@ -17,23 +17,26 @@ var AC = {
 					data.description = jQuery('#ajax-create-dialog-description').val();
 				}
 				jQuery.post(
-					'http://localhost/workspace/omeka/ajax-create/create',
+					AC.webRoot + '/ajax-create/create',
 					data,
-					AC.processResponse
-				);
+					function(data) {
+						console.log('ok');
+						AC.processResponse(data);						
+					},
+					'json'
+				  );
 				} 
 			} , 
 			autoOpen: false,
 			title: "Create A New " + data.type,			
 			width: "400px"
-			};
+			};		
 		jQuery('#ajax-create-dialog').dialog(setup);
-		jQuery('#ajax-create-dialog').dialog('option', setup);
 		jQuery('#ajax-create-dialog').dialog('open');
 	
 	},
 
-	processResponse: function(data) {
+	processResponse: function(data) {		
 		if(typeof data ==  'string') {
 			data = eval('(' + data + ')' );
 		}
@@ -49,11 +52,10 @@ var AC = {
 
 	appendToSelect: function(data) {
 		var sel = jQuery(data.target);
-		var newOption = document.createElement('option');
+		var newOption = document.createElement('option');		
 		jQuery(newOption).attr('label', data.name);
 		jQuery(newOption).attr('value', data.id);
 		jQuery(newOption).text(data.name);
 		jQuery(sel).append(newOption);		
 	}
-
 }
